@@ -1,11 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
+import { Container } from "@/components/container";
 
 const Movies = () => {
   return (
-    <View>
+    <Container>
       <Text>Movies</Text>
-    </View>
+    </Container>
   );
 };
 

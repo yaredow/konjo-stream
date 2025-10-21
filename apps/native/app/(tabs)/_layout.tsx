@@ -14,7 +14,7 @@ import {
 
 export default function TabLayout() {
   const router = useRouter();
-  const accentColor = "hsl(268 88% 62%)";
+  const accentColor = "hsl(72 97% 61%)";
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function TabLayout() {
                 marginRight: 16,
               }}
             >
-              <Pressable>
+              <Pressable onPress={() => router.push("/search")}>
                 <HugeiconsIcon
                   icon={Search01Icon}
                   size={28}

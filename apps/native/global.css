@@ -4,47 +4,92 @@
 
 @layer base {
   :root {
-    --background: 225 25% 12%; /* charcoal */
-    --foreground: 210 20% 96%; /* near-white */
-    --card: 220 28% 6%;
-    --card-foreground: 210 18% 92%;
-    --popover: 220 28% 6%;
-    --popover-foreground: 210 18% 92%;
-    --primary: 268 88% 62%; /* luxe violet accent */
+    --background: 225 25% 10%;
+    --foreground: 210 20% 96%;
+
+    --card: 225 25% 14%;
+    --card-foreground: 210 20% 96%;
+
+    --popover: 225 25% 14%;
+    --popover-foreground: 210 20% 96%;
+
+    --primary: 72 97% 61%; /* neon lime accent */
+
     --primary-foreground: 0 0% 100%;
-    --secondary: 225 25% 12%; /* deep slate panels */
+
+    --primary-contrast: 0 0% 8%; /* For text on neon buttons */
+
+    --secondary: 225 20% 18%;
     --secondary-foreground: 210 20% 88%;
-    --muted: 220 18% 16%;
-    --muted-foreground: 215 16% 65%;
-    --accent: 202 100% 50%; /* cyan glow if needed */
+
+    --muted: 225 15% 20%;
+    --muted-foreground: 215 16% 70%;
+
+    --accent: 202 100% 50%;
     --accent-foreground: 210 20% 96%;
+
     --destructive: 3 94% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 18% 18%;
-    --input: 220 18% 22%;
-    --ring: 268 88% 62%;
-    --radius: 8px;
+
+    --border: 225 18% 24%;
+    --input: 225 18% 20%;
+    --ring: 72 97% 61%; /* for focus rings */
+    --radius: 10px;
   }
 
   .light:root {
     --background: 0 0% 100%;
     --foreground: 222 84% 5%;
+
     --card: 0 0% 100%;
     --card-foreground: 222 84% 5%;
+
     --popover: 0 0% 100%;
     --popover-foreground: 222 84% 5%;
+
     --primary: 268 88% 62%;
     --primary-foreground: 0 0% 100%;
+
     --secondary: 210 40% 96%;
     --secondary-foreground: 222 84% 5%;
+
     --muted: 210 40% 94%;
     --muted-foreground: 215 28% 35%;
+
     --accent: 202 100% 50%;
     --accent-foreground: 0 0% 100%;
+
     --destructive: 3 94% 55%;
     --destructive-foreground: 0 0% 98%;
+
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 268 88% 62%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply bg-input text-foreground border border-border rounded-[var(--radius)] px-3 py-2 outline-none focus:ring-2 focus:ring-[hsl(var(--ring))];
+  }
+
+  button {
+    @apply inline-flex items-center justify-center rounded-[var(--radius)] px-4 py-2 font-medium transition-colors;
+  }
+
+  button[data-variant="primary"] {
+    @apply bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:opacity-90;
+  }
+
+  button[data-variant="secondary"] {
+    @apply bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] hover:bg-[hsl(var(--muted))];
+  }
+
+  .card {
+    @apply bg-[hsl(var(--card))] text-[hsl(var(--card-foreground))] rounded-[var(--radius)] border border-[hsl(var(--border))] p-4 shadow-sm;
   }
 }

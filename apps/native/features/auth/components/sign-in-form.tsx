@@ -113,7 +113,7 @@ export function SignInForm() {
             {isLoading ? (
               <ActivityIndicator size="small" color="#fff" />
             ) : (
-              <Text className="text-primary-foreground font-bold text-lg">
+              <Text className="font-bold text-primary-contrast text-lg">
                 Sign In
               </Text>
             )}
@@ -143,7 +143,7 @@ export function SignInForm() {
             Don't have an account?{" "}
           </Text>
           <TouchableOpacity onPress={() => router.push("/(auth)/sign-up")}>
-            <Text className="text-primary-foreground font-semibold text-base">
+            <Text className="font-semibold text-primary-foreground text-base">
               Sign Up
             </Text>
           </TouchableOpacity>
