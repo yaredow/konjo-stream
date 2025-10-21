@@ -1,8 +1,15 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { HugeiconsIcon } from "@hugeicons/react-native";
 
-export const TabBarIcon = (props: {
-	name: React.ComponentProps<typeof FontAwesome>["name"];
-	color: string;
+export const TabBarIcon = ({
+  icon,
+  color,
+  size = 24,
+}: {
+  icon: any;
+  color: string;
+  size?: number;
 }) => {
-	return <FontAwesome size={24} style={{ marginBottom: -3 }} {...props} />;
+  return (
+    <HugeiconsIcon icon={icon} size={size} color={color} strokeWidth={1.5} />
+  );
 };
