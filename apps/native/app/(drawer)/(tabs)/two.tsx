@@ -1,14 +1,15 @@
 import { Container } from "@/components/container";
 import { ScrollView, Text, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 
 export default function TabTwo() {
 	return (
 		<Container>
-			<ScrollView contentContainerStyle={styles.container}>
-				<View style={styles.headerSection}>
-					<Text style={styles.title}>Tab Two</Text>
-					<Text style={styles.subtitle}>
+			<ScrollView className="flex-1 p-6">
+				<View className="py-8">
+					<Text className="text-3xl font-bold text-foreground mb-2">
+						Tab Two
+					</Text>
+					<Text className="text-lg text-muted-foreground">
 						Discover more features and content
 					</Text>
 				</View>
@@ -16,22 +17,3 @@ export default function TabTwo() {
 		</Container>
 	);
 }
-
-const styles = StyleSheet.create((theme) => ({
-	container: {
-		padding: theme.spacing.lg,
-	},
-	headerSection: {
-		paddingVertical: theme.spacing.xl,
-	},
-	title: {
-		fontSize: theme.fontSize["3xl"],
-		fontWeight: "bold",
-		color: theme.colors.foreground,
-		marginBottom: theme.spacing.sm,
-	},
-	subtitle: {
-		fontSize: theme.fontSize.lg,
-		color: theme.colors.mutedForeground,
-	},
-}));

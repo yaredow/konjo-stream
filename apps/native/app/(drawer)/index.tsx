@@ -1,7 +1,6 @@
 import { authClient } from "@/lib/auth-client";
 import { useQuery } from "@tanstack/react-query";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 
 import { Container } from "@/components/container";
 import { SignIn } from "@/components/sign-in";
@@ -15,42 +14,43 @@ export default function Home() {
 
 	return (
 		<Container>
-			<ScrollView>
-				<View style={styles.pageContainer}>
-					<Text style={styles.headerTitle}>BETTER T STACK</Text>
+			<ScrollView className="flex-1">
+				<View className="px-4">
+					<Text className="font-mono text-foreground text-3xl font-bold mb-4">
+						BETTER T STACK
+					</Text>
 					{session?.user ? (
-						<View style={styles.sessionInfoCard}>
-							<View style={styles.sessionUserRow}>
-								<Text style={styles.welcomeText}>
+						<View className="mb-6 p-4 bg-card rounded-lg border border-border">
+							<View className="flex-row justify-between items-center mb-2">
+								<Text className="text-foreground text-base">
 									Welcome,{" "}
-									<Text style={styles.userNameText}>{session.user.name}</Text>
+									<Text className="font-medium">{session.user.name}</Text>
 								</Text>
 							</View>
-							<Text style={styles.emailText}>{session.user.email}</Text>
+							<Text className="text-muted-foreground text-sm mb-4">
+								{session.user.email}
+							</Text>
 
 							<TouchableOpacity
-								style={styles.signOutButton}
+								className="bg-destructive py-2 px-4 rounded-md self-start"
 								onPress={() => {
 									authClient.signOut();
 									queryClient.invalidateQueries();
 								}}
 							>
-								<Text style={styles.signOutButtonText}>Sign Out</Text>
+								<Text className="text-white font-medium">Sign Out</Text>
 							</TouchableOpacity>
 						</View>
 					) : null}
-					<View style={styles.apiStatusCard}>
-						<Text style={styles.cardTitle}>API Status</Text>
-						<View style={styles.apiStatusRow}>
+					<View className="mb-6 rounded-lg border border-border p-4">
+						<Text className="mb-3 font-medium text-foreground">API Status</Text>
+						<View className="flex-row items-center gap-2">
 							<View
-								style={[
-									styles.statusIndicatorDot,
-									healthCheck.data
-										? styles.statusIndicatorGreen
-										: styles.statusIndicatorRed,
-								]}
+								className={`h-3 w-3 rounded-full ${
+									healthCheck.data ? "bg-green-500" : "bg-red-500"
+								}`}
 							/>
-							<Text style={styles.mutedText}>
+							<Text className="text-muted-foreground">
 								{healthCheck.isLoading
 									? "Checking..."
 									: healthCheck.data
@@ -59,11 +59,13 @@ export default function Home() {
 							</Text>
 						</View>
 					</View>
-					<View style={styles.privateDataCard}>
-						<Text style={styles.cardTitle}>Private Data</Text>
+					<View className="mb-6 rounded-lg border border-border p-4">
+						<Text className="mb-3 font-medium text-foreground">
+							Private Data
+						</Text>
 						{privateData && (
 							<View>
-								<Text style={styles.mutedText}>
+								<Text className="text-muted-foreground">
 									{privateData.data?.message}
 								</Text>
 							</View>
@@ -80,89 +82,3 @@ export default function Home() {
 		</Container>
 	);
 }
-
-const styles = StyleSheet.create((theme) => ({
-	pageContainer: {
-		paddingHorizontal: 8,
-	},
-	headerTitle: {
-		color: theme?.colors?.typography,
-		fontSize: 30,
-		fontWeight: "bold",
-		marginBottom: 16,
-	},
-	sessionInfoCard: {
-		marginBottom: 24,
-		padding: 16,
-		borderRadius: 8,
-		borderWidth: 1,
-		borderColor: theme?.colors?.border,
-	},
-	sessionUserRow: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		marginBottom: 8,
-	},
-	welcomeText: {
-		color: theme?.colors?.typography,
-		fontSize: 16,
-	},
-	userNameText: {
-		fontWeight: "500",
-		color: theme?.colors?.typography,
-	},
-	emailText: {
-		color: theme?.colors?.typography,
-		fontSize: 14,
-		marginBottom: 16,
-	},
-	signOutButton: {
-		backgroundColor: theme?.colors?.destructive,
-		paddingVertical: 8,
-		paddingHorizontal: 16,
-		borderRadius: 6,
-		alignSelf: "flex-start",
-	},
-	signOutButtonText: {
-		fontWeight: "500",
-	},
-	apiStatusCard: {
-		marginBottom: 24,
-		borderRadius: 8,
-		borderWidth: 1,
-		borderColor: theme?.colors?.border,
-		padding: 16,
-	},
-	cardTitle: {
-		marginBottom: 12,
-		fontWeight: "500",
-		color: theme?.colors?.typography,
-	},
-	apiStatusRow: {
-		flexDirection: "row",
-		alignItems: "center",
-		gap: 8,
-	},
-	statusIndicatorDot: {
-		height: 12,
-		width: 12,
-		borderRadius: 9999,
-	},
-	statusIndicatorGreen: {
-		backgroundColor: theme.colors.success,
-	},
-	statusIndicatorRed: {
-		backgroundColor: theme.colors.destructive,
-	},
-	mutedText: {
-		color: theme?.colors?.typography,
-	},
-	privateDataCard: {
-		marginBottom: 24,
-		borderRadius: 8,
-		borderWidth: 1,
-		borderColor: theme?.colors?.border,
-		padding: 16,
-	},
-}));

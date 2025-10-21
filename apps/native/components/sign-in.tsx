@@ -8,7 +8,6 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
 
 export function SignIn() {
 	const [email, setEmail] = useState("");
@@ -43,87 +42,47 @@ export function SignIn() {
 	};
 
 	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>Sign In</Text>
+		<View className="mt-6 p-4 bg-card rounded-lg border border-border">
+			<Text className="text-lg font-semibold text-foreground mb-4">
+				Sign In
+			</Text>
 
 			{error && (
-				<View style={styles.errorContainer}>
-					<Text style={styles.errorText}>{error}</Text>
+				<View className="mb-4 p-3 bg-destructive/10 rounded-md">
+					<Text className="text-destructive text-sm">{error}</Text>
 				</View>
 			)}
 
 			<TextInput
-				style={styles.input}
+				className="mb-3 p-4 rounded-md bg-input text-foreground border border-input"
 				placeholder="Email"
 				value={email}
 				onChangeText={setEmail}
+				placeholderTextColor="#9CA3AF"
 				keyboardType="email-address"
 				autoCapitalize="none"
 			/>
 
 			<TextInput
-				style={styles.input}
+				className="mb-4 p-4 rounded-md bg-input text-foreground border border-input"
 				placeholder="Password"
 				value={password}
 				onChangeText={setPassword}
+				placeholderTextColor="#9CA3AF"
 				secureTextEntry
 			/>
 
 			<TouchableOpacity
 				onPress={handleLogin}
 				disabled={isLoading}
-				style={styles.button}
+				className="bg-primary p-4 rounded-md flex-row justify-center items-center"
 			>
 				{isLoading ? (
 					<ActivityIndicator size="small" color="#fff" />
 				) : (
-					<Text style={styles.buttonText}>Sign In</Text>
+					<Text className="text-primary-foreground font-medium">Sign In</Text>
 				)}
 			</TouchableOpacity>
 		</View>
 	);
 }
-
-const styles = StyleSheet.create((theme) => ({
-	container: {
-		marginTop: 24,
-		padding: 16,
-		borderRadius: 8,
-		borderWidth: 1,
-		borderColor: theme.colors.border,
-	},
-	title: {
-		fontSize: 18,
-		fontWeight: "600",
-		color: theme.colors.typography,
-		marginBottom: 16,
-	},
-	errorContainer: {
-		marginBottom: 16,
-		padding: 12,
-		borderRadius: 6,
-	},
-	errorText: {
-		color: theme.colors.destructive,
-		fontSize: 14,
-	},
-	input: {
-		marginBottom: 12,
-		padding: 16,
-		borderRadius: 6,
-		color: theme.colors.typography,
-		borderWidth: 1,
-		borderColor: theme.colors.border,
-	},
-	button: {
-		backgroundColor: theme.colors.primary,
-		padding: 16,
-		borderRadius: 6,
-		flexDirection: "row",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	buttonText: {
-		fontWeight: "500",
-	},
-}));

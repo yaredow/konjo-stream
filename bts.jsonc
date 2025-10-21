@@ -3,21 +3,23 @@
 
 {
   "$schema": "https://r2.better-t-stack.dev/schema.json",
-  "version": "3.2.5",
-  "createdAt": "2025-10-20T13:49:25.222Z",
+  "version": "3.2.6",
+  "createdAt": "2025-10-21T06:45:30.605Z",
   "database": "postgres",
   "orm": "drizzle",
   "backend": "elysia",
   "runtime": "bun",
   "frontend": [
     "next",
-    "native-unistyles"
+    "native-nativewind"
   ],
   "addons": [
     "biome",
     "turborepo"
   ],
-  "examples": [],
+  "examples": [
+    "todo"
+  ],
   "auth": "better-auth",
   "packageManager": "bun",
   "dbSetup": "docker",
