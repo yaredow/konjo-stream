@@ -1,5 +1,5 @@
 import { TabBarIcon } from "@/components/tabbar-icon";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import { View, Text, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { HugeiconsIcon } from "@hugeicons/react-native";
@@ -13,6 +13,7 @@ import {
 } from "@hugeicons/core-free-icons";
 
 export default function TabLayout() {
+  const router = useRouter();
   const accentColor = "hsl(268 88% 62%)";
 
   return (
@@ -27,14 +28,7 @@ export default function TabLayout() {
           headerTintColor: "hsl(210 20% 96%)",
           headerShadowVisible: false,
           headerLeft: () => (
-            <Text
-              style={{
-                fontSize: 24,
-                fontFamily: "Inter_700Bold",
-                color: "hsl(210 20% 96%)",
-                marginLeft: 16,
-              }}
-            >
+            <Text className="text-2xl font-bold text-slate-100 ml-4">
               Stream
             </Text>
           ),
@@ -44,22 +38,24 @@ export default function TabLayout() {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                gap: 16,
+                gap: 20,
                 marginRight: 16,
               }}
             >
               <Pressable>
                 <HugeiconsIcon
                   icon={Search01Icon}
-                  size={22}
+                  size={28}
                   color="hsl(210 20% 96%)"
+                  strokeWidth={1.8}
                 />
               </Pressable>
-              <Pressable>
+              <Pressable onPress={() => router.push("/sign-in")}>
                 <HugeiconsIcon
                   icon={UserCircle02FreeIcons}
-                  size={26}
+                  size={28}
                   color="hsl(210 20% 96%)"
+                  strokeWidth={1.8}
                 />
               </Pressable>
             </View>
@@ -67,7 +63,8 @@ export default function TabLayout() {
           tabBarActiveTintColor: accentColor,
           tabBarLabelStyle: {
             fontFamily: "Inter_500Medium",
-            fontSize: 12,
+            fontSize: 11,
+            marginTop: 4,
           },
           tabBarInactiveTintColor: "hsl(215 16% 65%)",
           tabBarStyle: {
@@ -76,7 +73,11 @@ export default function TabLayout() {
             borderTopWidth: 1,
             height: 90,
             paddingBottom: 20,
-            paddingTop: 10,
+            paddingTop: 8,
+            paddingHorizontal: 8,
+          },
+          tabBarItemStyle: {
+            paddingVertical: 4,
           },
         }}
       >
